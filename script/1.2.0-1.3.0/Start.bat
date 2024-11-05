@@ -143,7 +143,7 @@ if NOT exist "hpatchz.exe" (
 
 if "%FileMissing%"=="True" (
   goto Retry
-) else goto ApplyPatch
+) else goto Query
 
 :Retry
 echo.
