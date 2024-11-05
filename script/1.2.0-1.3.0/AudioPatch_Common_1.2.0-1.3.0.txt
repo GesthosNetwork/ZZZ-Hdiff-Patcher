@@ -30,4 +30,4 @@ ZenlessZoneZero_Data\StreamingAssets\Audio\Windows\Full\Streamed_SFX_6.pck
 ZenlessZoneZero_Data\StreamingAssets\Audio\Windows\Full\Streamed_SFX_7.pck
 ZenlessZoneZero_Data\StreamingAssets\Audio\Windows\Full\Streamed_SFX_8.pck
 ZenlessZoneZero_Data\StreamingAssets\Audio\Windows\Full\Streamed_SFX_9.pck
-ZenlessZoneZero_Data\StreamingAssets\Audio\Windows\Full\Windows\Min\Minimum.pck
+ZenlessZoneZero_Data\StreamingAssets\Audio\Windows\Min\Minimum.pck
