@@ -4,21 +4,20 @@ If you update the game by simply copying all the *update files* and then replaci
 
 ## How to use?
 
-For example, you want to update the game from 1.0.1 to 1.1.0:
+For example, you want to update the game from 1.3.0 to 1.4.0:
 
 1. Put the following files in the same place as `ZenlessZoneZero.exe`:
-   - `hdiffz.exe`
    - `hpatchz.exe`
    - `7z.exe`
    - `Start.bat`
-   - `Cleanup_1.0.1-1.1.0.txt`
-   - `AudioPatch_Common_1.0.1-1.1.0.txt`
-   - `AudioPatch_English_1.0.1-1.1.0.txt`
-   - `AudioPatch_Japanese_1.0.1-1.1.0.txt`
-   - `AudioPatch_Chinese_1.0.1-1.1.0.txt`
-   - `AudioPatch_Korean_1.0.1-1.1.0.txt`
-   - `game_1.0.1-1.1.0_hdiff.zip`
-   - `audio_en-us_1.0.1-1.1.0_hdiff.zip`
+   - `Cleanup_1.3.0-1.4.0.txt`
+   - `AudioPatch_Common_1.3.0-1.4.0.txt`
+   - `AudioPatch_English_1.3.0-1.4.0.txt`
+   - `AudioPatch_Japanese_1.3.0-1.4.0.txt`
+   - `AudioPatch_Chinese_1.3.0-1.4.0.txt`
+   - `AudioPatch_Korean_1.3.0-1.4.0.txt`
+   - `game_1.3.0-1.4.0_hdiff.zip`
+   - `audio_en-us_1.3.0-1.4.0_hdiff.zip`
 
 2. Run `Start.bat` and wait until the process finishes.
 3. Now, your game is updated!
@@ -32,4 +31,3 @@ For example, you want to update the game from 1.0.1 to 1.1.0:
     = Banks0.pck (62.5 MB)      // new size after update
     ```
 
-<!-- I created this repository because I'm too lazy to update using the official launcher. -->
