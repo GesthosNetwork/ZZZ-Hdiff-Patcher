@@ -1,8 +1,8 @@
 @echo off
 SetLocal EnableDelayedExpansion
 chcp 65001 >nul
-set "oldVer=1.4.0"
-set "newVer=1.5.0"
+set "oldVer=1.7.0"
+set "newVer=2.0.0"
 Title ZZZ Hdiff Patcher © 2025 GesthosNetwork
 
 :Extract

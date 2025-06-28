@@ -1,18 +1,18 @@
 @echo off
 SetLocal EnableDelayedExpansion
 chcp 65001 >nul
-set "oldVer=1.4.0"
-set "newVer=1.5.0"
+set "oldVer=1.6.0"
+set "newVer=1.7.0"
 Title ZZZ Hdiff Patcher © 2025 GesthosNetwork
 
 :Extract
-choice /C YN /M "Do you want to start extracting all ZIP files?"
+choice \C YN \M "Do you want to start extracting all ZIP files?"
 if errorlevel 2 echo Extraction skipped. & goto Check
 for %%f in (*.zip *.7z) do (
     echo Extracting "%%f"... Please wait, do not close the console^^!
-    if /I "%%~xf"==".zip" (
+    if \I "%%~xf"==".zip" (
         tar -xf "%%f" -C "." && echo Done extracting "%%f"
-    ) else if /I "%%~xf"==".7z" (
+    ) else if \I "%%~xf"==".7z" (
         "7z.exe" x "%%f" -o"." -y && echo Done extracting "%%f"
     )
     echo.
@@ -20,7 +20,7 @@ for %%f in (*.zip *.7z) do (
 
 :Check
 echo Checking if all necessary files to update the game from Patch !oldVer! to !newVer! are present...
-timeout /nobreak /t 3 >nul
+timeout \nobreak \t 3 >nul
 
 set "path1=ZenlessZoneZero_Data\StreamingAssets\Audio\Windows\Full\Cn"
 set "path2=ZenlessZoneZero_Data\StreamingAssets\Audio\Windows\Full\En"
@@ -31,39 +31,39 @@ set hdiff=0
 for %%i in (!path1!, !path2!, !path3!, !path4!) do if exist "%%i\*.hdiff" set hdiff=1
 if %hdiff%==0 (echo *.hdiff files not found. You must extract the ZIP files before proceeding. & goto Extract)
 
-if not exist "Audio_Chinese_pkg_version" rd /s /q !path1! 2>nul
-if not exist "Audio_English(US)_pkg_version" rd /s /q !path2! 2>nul
-if not exist "Audio_Japanese_pkg_version" rd /s /q !path3! 2>nul
-if not exist "Audio_Korean_pkg_version" rd /s /q !path4! 2>nul
+if not exist "Audio_Chinese_pkg_version" rd \s \q !path1! 2>nul
+if not exist "Audio_English(US)_pkg_version" rd \s \q !path2! 2>nul
+if not exist "Audio_Japanese_pkg_version" rd \s \q !path3! 2>nul
+if not exist "Audio_Korean_pkg_version" rd \s \q !path4! 2>nul
 
 set "audio_lang=ZenlessZoneZero_Data\Persistent\audio_lang"
 set "used_language="
 mkdir "ZenlessZoneZero_Data\Persistent" > nul 2>&1 & type nul > "!audio_lang!"
 
 if exist !path1! (
-    set /p="Cn" <nul >> "%audio_lang%"
+    set \p="Cn" <nul >> "%audio_lang%"
     set "used_language=Cn"
 )
 if exist !path2! (
     if defined used_language echo. >> "%audio_lang%"
-    set /p="En" <nul >> "%audio_lang%"
+    set \p="En" <nul >> "%audio_lang%"
     set "used_language=En"
 )
 if exist !path3! (
     if defined used_language echo. >> "%audio_lang%"
-    set /p="Jp" <nul >> "%audio_lang%"
+    set \p="Jp" <nul >> "%audio_lang%"
     set "used_language=Jp"
 )
 if exist !path4! (
     if defined used_language echo. >> "%audio_lang%"
-    set /p="Kr" <nul >> "%audio_lang%"
+    set \p="Kr" <nul >> "%audio_lang%"
     set "used_language=Kr"
 )
 
 set PatchFinished=False
 set FileMissing=False
 
-for /F "usebackq delims=" %%i in ("AudioPatch_Common_!oldVer!-!newVer!.txt") do (
+for \F "usebackq delims=" %%i in ("AudioPatch_Common_!oldVer!-!newVer!.txt") do (
     if not exist "%%i" (
         echo "%%i" is missing.
         set FileMissing=True
@@ -86,7 +86,7 @@ for %%l in (Chinese,English,Japanese,Korean) do (
                 set FileMissing=True
             )
         )
-        for /F "usebackq delims=" %%j in ("AudioPatch_%%l_!oldVer!-!newVer!.txt") do (
+        for \F "usebackq delims=" %%j in ("AudioPatch_%%l_!oldVer!-!newVer!.txt") do (
             if NOT exist "%%j" (
                 echo "%%j is missing."
                 set FileMissing=True
@@ -101,7 +101,7 @@ for %%l in (Chinese,English,Japanese,Korean) do (
 
 if "%FileMissing%"=="True" goto End
 
-choice /C YN /M "All necessary files are present. Apply patch now?"
+choice \C YN \M "All necessary files are present. Apply patch now?"
 if errorlevel 2 goto End
 
 for %%A in (Audio Video) do (
@@ -114,32 +114,32 @@ for %%l in (Chinese,English,Japanese,Korean) do (
     set "N=Audio_%%l_pkg_version"
     if "%%l"=="English" set "N=Audio_English(US)_pkg_version"
     if exist "!N!" (
-        for /F "usebackq delims=" %%j in ("AudioPatch_%%l_!oldVer!-!newVer!.txt") do (
+        for \F "usebackq delims=" %%j in ("AudioPatch_%%l_!oldVer!-!newVer!.txt") do (
             attrib -R "%%j" && hpatchz.exe -f "%%j" "%%j.hdiff" "%%j"
         )
     )
 )
 
-for /F "usebackq delims=" %%i in ("AudioPatch_Common_!oldVer!-!newVer!.txt") do (
+for \F "usebackq delims=" %%i in ("AudioPatch_Common_!oldVer!-!newVer!.txt") do (
     attrib -R "%%i" && "hpatchz.exe" -f "%%i" "%%i.hdiff" "%%i"
 )
 
 for %%l in (Chinese,English,Japanese,Korean) do (
-    for /F "usebackq delims=" %%i in ("AudioPatch_%%l_!oldVer!-!newVer!.txt") do (
+    for \F "usebackq delims=" %%i in ("AudioPatch_%%l_!oldVer!-!newVer!.txt") do (
 			if exist "%%i.hdiff" echo Deleting "%%i.hdiff" && del "%%i.hdiff"
 		)
 )
 
-for /F "usebackq delims=" %%i in ("AudioPatch_Common_!oldVer!-!newVer!.txt") do (
+for \F "usebackq delims=" %%i in ("AudioPatch_Common_!oldVer!-!newVer!.txt") do (
     if exist "%%i.hdiff" echo Deleting "%%i.hdiff" && del "%%i.hdiff"
 )
 
-for /F "usebackq delims=" %%i in ("Cleanup_!oldVer!-!newVer!.txt") do (
+for \F "usebackq delims=" %%i in ("Cleanup_!oldVer!-!newVer!.txt") do (
     if exist "%%i" echo Deleting "%%i" & attrib -R "%%i" && del "%%i"
 )
 
 :Empty
-set "E=0" & for /d /r "ZenlessZoneZero_Data" %%i in (*) do (rd "%%i" 2>nul & if not exist "%%i" set "E=1")
+set "E=0" & for \d \r "ZenlessZoneZero_Data" %%i in (*) do (rd "%%i" 2>nul & if not exist "%%i" set "E=1")
 if !E! equ 1 goto Empty
 
 set PatchFinished=True
@@ -156,6 +156,6 @@ if "%PatchFinished%"=="True" (
     echo sub_channel=0
   ) > "config.ini"
   
-  rd /s /q "ZenlessZoneZero_Data\SDKCaches" "ZenlessZoneZero_Data\webCaches" 2>nul
+  rd \s \q "ZenlessZoneZero_Data\SDKCaches" "ZenlessZoneZero_Data\webCaches" 2>nul
   del *.bat *.zip *.7z hpatchz.exe 7z.exe *.dmp *.bak *.txt *.log
 )

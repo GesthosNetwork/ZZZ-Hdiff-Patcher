@@ -5,13 +5,17 @@ set "oldVer=1.2.0"
 set "newVer=1.3.0"
 Title ZZZ Hdiff Patcher © 2024 GesthosNetwork
 
+:Extract
 choice /C YN /M "Do you want to start extracting all ZIP files?"
 if errorlevel 2 echo Extraction skipped. & goto Check
-if not exist 7z.exe echo 7z.exe not found. & goto End
-
-for %%f in (*.zip) do (
+for %%f in (*.zip *.7z) do (
     echo Extracting "%%f"... Please wait, do not close the console^^!
-    "7z.exe" x "%%f" -o"." -y & echo Done extracting "%%f" & echo.
+    if /I "%%~xf"==".zip" (
+        tar -xf "%%f" -C "." && echo Done extracting "%%f"
+    ) else if /I "%%~xf"==".7z" (
+        "7z.exe" x "%%f" -o"." -y && echo Done extracting "%%f"
+    )
+    echo.
 )
 
 :Check
@@ -22,6 +26,10 @@ set "path1=ZenlessZoneZero_Data\StreamingAssets\Audio\Windows\Full\Cn"
 set "path2=ZenlessZoneZero_Data\StreamingAssets\Audio\Windows\Full\En"
 set "path3=ZenlessZoneZero_Data\StreamingAssets\Audio\Windows\Full\Jp"
 set "path4=ZenlessZoneZero_Data\StreamingAssets\Audio\Windows\Full\Kr"
+
+set hdiff=0
+for %%i in (!path1!, !path2!, !path3!, !path4!) do if exist "%%i\*.hdiff" set hdiff=1
+if %hdiff%==0 (echo *.hdiff files not found. You must extract the ZIP files before proceeding. & goto Extract)
 
 if not exist "Audio_Chinese_pkg_version" rd /s /q !path1! 2>nul
 if not exist "Audio_English(US)_pkg_version" rd /s /q !path2! 2>nul
@@ -96,7 +104,11 @@ if "%FileMissing%"=="True" goto End
 choice /C YN /M "All necessary files are present. Apply patch now?"
 if errorlevel 2 goto End
 
-if exist "ZenlessZoneZero_Data\Persistent\Audio" robocopy "ZenlessZoneZero_Data\Persistent\Audio" "ZenlessZoneZero_Data\StreamingAssets\Audio" /e /copy:DAT /move
+for %%A in (Audio Video) do (
+    if exist "ZenlessZoneZero_Data\Persistent\%%A" (
+        robocopy "ZenlessZoneZero_Data\Persistent\%%A" "ZenlessZoneZero_Data\StreamingAssets\%%A" /e /copy:DAT /move
+    )
+)
 
 for %%l in (Chinese,English,Japanese,Korean) do (
     set "N=Audio_%%l_pkg_version"
@@ -139,7 +151,7 @@ if "%PatchFinished%"=="True" (
   (
     echo [General]
     echo channel=1
-    echo cps=mihoyo
+    echo cps=hyp_hoyoverse
     echo game_version=!newVer!
     echo sub_channel=0
   ) > "config.ini"

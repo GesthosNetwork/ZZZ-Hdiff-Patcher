@@ -1,0 +1,17 @@
+{"remoteName": "ZenlessZoneZero_Data/StreamingAssets/Audio/Windows/Full/Cn/External_Cn_0.pck"}
+{"remoteName": "ZenlessZoneZero_Data/StreamingAssets/Audio/Windows/Full/Cn/External_Cn_1.pck"}
+{"remoteName": "ZenlessZoneZero_Data/StreamingAssets/Audio/Windows/Full/Cn/External_Cn_10.pck"}
+{"remoteName": "ZenlessZoneZero_Data/StreamingAssets/Audio/Windows/Full/Cn/External_Cn_11.pck"}
+{"remoteName": "ZenlessZoneZero_Data/StreamingAssets/Audio/Windows/Full/Cn/External_Cn_12.pck"}
+{"remoteName": "ZenlessZoneZero_Data/StreamingAssets/Audio/Windows/Full/Cn/External_Cn_13.pck"}
+{"remoteName": "ZenlessZoneZero_Data/StreamingAssets/Audio/Windows/Full/Cn/External_Cn_14.pck"}
+{"remoteName": "ZenlessZoneZero_Data/StreamingAssets/Audio/Windows/Full/Cn/External_Cn_15.pck"}
+{"remoteName": "ZenlessZoneZero_Data/StreamingAssets/Audio/Windows/Full/Cn/External_Cn_2.pck"}
+{"remoteName": "ZenlessZoneZero_Data/StreamingAssets/Audio/Windows/Full/Cn/External_Cn_3.pck"}
+{"remoteName": "ZenlessZoneZero_Data/StreamingAssets/Audio/Windows/Full/Cn/External_Cn_4.pck"}
+{"remoteName": "ZenlessZoneZero_Data/StreamingAssets/Audio/Windows/Full/Cn/External_Cn_5.pck"}
+{"remoteName": "ZenlessZoneZero_Data/StreamingAssets/Audio/Windows/Full/Cn/External_Cn_6.pck"}
+{"remoteName": "ZenlessZoneZero_Data/StreamingAssets/Audio/Windows/Full/Cn/External_Cn_7.pck"}
+{"remoteName": "ZenlessZoneZero_Data/StreamingAssets/Audio/Windows/Full/Cn/External_Cn_8.pck"}
+{"remoteName": "ZenlessZoneZero_Data/StreamingAssets/Audio/Windows/Full/Cn/External_Cn_9.pck"}
+{"remoteName": "ZenlessZoneZero_Data/StreamingAssets/Audio/Windows/Full/Cn/SoundBank_Cn_0.pck"}
