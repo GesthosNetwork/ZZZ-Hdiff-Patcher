@@ -10,6 +10,12 @@ for /F "usebackq delims=" %%i in ("Cleanup_!oldVer!-!newVer!.txt") do (
     if exist "%%i" (echo Deleting "%%i" & attrib -R "%%i" & del "%%i")
 )
 
+set "langRoot=ZenlessZoneZero_Data\StreamingAssets\Audio\Windows"
+set "path1=%langRoot%\Full\Cn"
+set "path2=%langRoot%\Full\En"
+set "path3=%langRoot%\Full\Jp"
+set "path4=%langRoot%\Full\Kr"
+
 if not exist "Audio_Chinese_pkg_version"  rd /s /q "%path1%" 2>nul
 if not exist "Audio_English(US)_pkg_version" rd /s /q "%path2%" 2>nul
 if not exist "Audio_Japanese_pkg_version" rd /s /q "%path3%" 2>nul
@@ -31,12 +37,6 @@ for %%f in (*.zip *.7z) do (
 :CheckFiles
 echo Verifying patch prerequisites from version !oldVer! to !newVer!...
 timeout /nobreak /t 3 >nul
-
-set "langRoot=ZenlessZoneZero_Data\StreamingAssets\Audio\Windows"
-set "path1=%langRoot%\Full\Cn"
-set "path2=%langRoot%\Full\En"
-set "path3=%langRoot%\Full\Jp"
-set "path4=%langRoot%\Full\Kr"
 
 set hdiff=0
 for %%i in ("%langRoot%\Full" "%langRoot%\Min" !path1! !path2! !path3! !path4!) do if exist "%%i\*.hdiff" set hdiff=1
